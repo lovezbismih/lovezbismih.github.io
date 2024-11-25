@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Git报错笔记1 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="报错内容12345678git push -u origin mainTo github.com:lovezbismih&#x2F;OpenSourceTweak.git ! [rejected]        main -&gt; main (non-fast-forward)error: failed to push some refs to &#x27;github.com:lovezbismih&#x2F;O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git报错笔记1">
+<meta property="og:url" content="http://example.com/2024/11/24/Git%E6%8A%A5%E9%94%99%E7%AC%94%E8%AE%B01/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="报错内容12345678git push -u origin mainTo github.com:lovezbismih&#x2F;OpenSourceTweak.git ! [rejected]        main -&gt; main (non-fast-forward)error: failed to push some refs to &#x27;github.com:lovezbismih&#x2F;O">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-11-24T04:41:06.762Z">
+<meta property="article:modified_time" content="2024-11-23T23:19:19.833Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Git报错笔记1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/24/Git%E6%8A%A5%E9%94%99%E7%AC%94%E8%AE%B01/" class="article-date">
+  <time class="dt-published" datetime="2024-11-24T04:41:06.762Z" itemprop="datePublished">2024-11-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Git报错笔记1
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="报错内容"><a href="#报错内容" class="headerlink" title="报错内容"></a>报错内容</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin main</span><br><span class="line">To github.com:lovezbismih/OpenSourceTweak.git</span><br><span class="line"> ! [rejected]        main -&gt; main (non-fast-forward)</span><br><span class="line">error: failed to push some refs to &#x27;github.com:lovezbismih/OpenSourceTweak.git&#x27;</span><br><span class="line">hint: Updates were rejected because the tip of your current branch is behind</span><br><span class="line">hint: its remote counterpart. Integrate the remote changes (e.g.</span><br><span class="line">hint: &#x27;git pull ...&#x27;) before pushing again.</span><br><span class="line">hint: See the &#x27;Note about fast-forwards&#x27; in &#x27;git push --help&#x27; for details.</span><br></pre></td></tr></table></figure>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>根据你的实际需求，有几种方法可以解决这个问题：</p>
+<p>方法 1：获取远程分支的更新后再推送<br>拉取远程分支的最新更改并合并到本地分支：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main</span><br></pre></td></tr></table></figure>
+
+
+<p>如果没有冲突，这会自动将远程分支的更改合并到你的本地分支。</p>
+<p>解决冲突（如果有）： 如果拉取时提示存在冲突，你需要手动解决文件冲突，然后运行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;文件名&gt;</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+
+
+<p>再次推送更改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+
+<p>方法 2：强制推送（不建议，可能覆盖远程更改）<br>如果你确定远程分支的更改不需要保留，并希望直接覆盖，可以使用强制推送：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin main --force</span><br></pre></td></tr></table></figure>
+
+
+<p>注意：强制推送可能会导致远程分支上的历史丢失，谨慎使用！</p>
+<p>方法 3：将远程分支的更改合并到本地<br>如果你想保留远程和本地的历史，可以尝试通过 rebase 来更新本地分支：</p>
+<p>拉取远程分支的更改并以 rebase 方式应用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin main</span><br></pre></td></tr></table></figure>
+
+
+<p>解决冲突（如果有）： 冲突解决后，继续 rebase：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
+
+
+<p>推送更改：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+
+<p>方法 4：检查远程和本地分支的状态<br>如果不确定远程分支和本地分支之间的差异，可以运行以下命令查看：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br><span class="line">git log main..origin/main --oneline</span><br></pre></td></tr></table></figure>
+
+
+<p>这将显示远程分支中本地分支缺失的提交。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/11/24/Git%E6%8A%A5%E9%94%99%E7%AC%94%E8%AE%B01/" data-id="cm3ww68cm0004b4v4hidsaq0s" data-title="Git报错笔记1" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/11/24/Linux%E5%AE%89%E8%A3%85theos/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          linux安装theos
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/11/24/Git%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/11/25/tmp/">tmp</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/25/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/24/fastboot%E5%88%B7%E6%9C%BA/">fastboot刷机</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/24/TweakCollectGithub/">Push到github仓库</a>
+          </li>
+        
+          <li>
+            <a href="/2024/11/24/sqlite%E5%85%A5%E9%97%A8/">sqlite入门</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
