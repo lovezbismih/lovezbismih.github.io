@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2024/11/25/nginx%E9%85%8D%E7%BD%AE%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+      <url>/2024/11/25/nginx%E9%85%8D%E7%BD%AE%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<hr><h2 id="nginx配置反向代理"><a href="#nginx配置反向代理" class="headerlink" title="nginx配置反向代理"></a>nginx配置反向代理</h2><p>配置NGINX反向代理：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/nginx/sites-available/glacne</span><br></pre></td></tr></table></figure><p>写入如下配置：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line">    server_name glance.example.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:8081;</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto &quot;https&quot;;</span><br><span class="line">        client_max_body_size 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>启用站点：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/nginx/sites-available/glance /etc/nginx/sites-enabled/glance</span><br></pre></td></tr></table></figure><p>签发TLS证书：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot --nginx --email imlala@example.com --agree-tos --no-eff-email</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2024/11/25/%E5%AE%89%E5%8D%93%E5%8E%9F%E7%94%9F%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2024/11/25/%E5%AE%89%E5%8D%93%E5%8E%9F%E7%94%9F%E7%B3%BB%E7%BB%9F/</url>
+      
+        <content type="html"><![CDATA[<hr><h2 id="安卓原生系统有哪些"><a href="#安卓原生系统有哪些" class="headerlink" title="安卓原生系统有哪些"></a>安卓原生系统有哪些</h2><ul><li><a href="https://afterlifeos.com/">afterlifeos</a></li><li><a href="https://pixelos.net/">pixelos</a></li><li><a href="https://ppui.site/">pixelplusui</a></li><li><a href="https://crdroid.net/">crdroid</a></li><li><a href="https://sourceforge.net/projects/superioros/">superioros</a></li><li><a href="https://get.pixelexperience.org/">PixelExperience</a></li><li><a href="https://risingos-staging.github.io/">RisingOS</a></li><li><a href="evolution-x.org">evolution-x</a></li><li><a href="https://lineageos.org/">lineageos</a></li><li><a href="https://www.projectmatrixx.org/">Matrixx</a></li><li><a href="https://calyxos.org/">CalyxOS</a></li><li><a href="https://sourceforge.net/projects/xperience-aosp/">xperience</a></li><li><a href="https://orion-os.vercel.app/">OrionOS</a></li><li><a href="https://derpfest.org/">derpfest</a></li><li><a href="https://sourceforge.net/projects/eliteroms/">eliteroms</a></li><li><a href="https://sourceforge.net/projects/skylineui">skylineui</a></li><li><a href="https://sourceforge.net/projects/alphadroid-project">alphadroid</a></li><li><a href="https://sourceforge.net/projects/everestos-releases">everestos</a></li><li><a href="https://sourceforge.net/projects/arrow-os">ArrowOS</a></li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2024黑五VPS汇总</title>
       <link href="/2024/11/25/2024%E9%BB%91%E4%BA%94VPS%E6%B1%87%E6%80%BB/"/>
       <url>/2024/11/25/2024%E9%BB%91%E4%BA%94VPS%E6%B1%87%E6%80%BB/</url>
