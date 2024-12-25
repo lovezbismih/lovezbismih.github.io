@@ -1,6 +1,9 @@
 name: Pages
 
+
+  
 on:
+  workflow_dispatch:   # 启用手动触发
   push:
     branches:
       - main # default branch
