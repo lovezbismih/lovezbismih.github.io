@@ -1,50 +1,63 @@
-name: Pages
+name: 自动部署
 
 on:
   push:
     branches:
-      - main # default branch
+      - main
+
+  release:
+    types:
+      - published
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: 检查分支
+        uses: actions/checkout@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # If your repository depends on submodule, please see: https://github.com/actions/checkout
-          submodules: recursive
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
+          ref: main
+
+      - name: 安装 Node
+        uses: actions/setup-node@v1
         with:
-          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
-          # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: "22.11.0"
-      - name: Cache NPM dependencies
-        uses: actions/cache@v4
+          node-version: "20"
+
+      - name: 安装 Hexo
+        run: |
+          export TZ='Asia/Shanghai'
+          npm install hexo-cli -g
+
+      - name: 缓存 Hexo
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
           path: node_modules
-          key: ${{ runner.OS }}-npm-cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-npm-cache
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: 安装依赖
+        if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        run: |
+          npm install gulp-cli -g #全局安装gulp
+          npm install --save
+
+      - name: 生成静态文件
+        run: |
+          hexo clean
+          hexo bangumi -u #bilibili番剧更新
+          hexo generate
+
+      - name: 部署到Github
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: ./public
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          token: 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s
+          repository-name: lovezbismih/test
+          branch: main
+          folder: public
+          commit-message: "${{ github.event.head_commit.message }} 由Github操作更新"
