@@ -9,5 +9,6 @@ git branch -M main
 git remote add origin git@github.com:lovezbismih/lovezbismih.github.io.git
 git push -u origin main
 
+
+timeout /t 2 /nobreak >nul
 echo Git 操作完成！
-pause
