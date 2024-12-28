@@ -1,26 +1,25 @@
-name: Deploy to Cloudflare Pages
+name: Pages
 
+
+  
 on:
   workflow_dispatch:   # 启用手动触发
   push:
     branches:
-      - main # 默认分支
+      - main # default branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: recursive
-
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: "lts/*" # 使用 LTS 版本
-
+          node-version: "lts/*" # Use LTS version
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
@@ -28,35 +27,28 @@ jobs:
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-npm-cache
-
       - name: Install Dependencies
         run: npm install
-
       - name: Install Hexo globally
         run: npm install -g hexo-cli
-
-      - name: Build the site
+      - name: Build
         run: npm run build
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
-
   deploy:
-    runs-on: ubuntu-latest
-    name: Deploy
+    needs: build
     permissions:
-      contents: read
-      deployments: write
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      # Check if page_url output is available or find the correct way to extract the URL
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./public --project-name=lovezbismih-github-io
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
