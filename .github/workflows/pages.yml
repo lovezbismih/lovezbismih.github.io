@@ -1,25 +1,26 @@
-name: Pages
+name: Deploy to Cloudflare Pages
 
-
-  
 on:
   workflow_dispatch:   # 启用手动触发
   push:
     branches:
-      - main # default branch
+      - main # 默认分支
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: recursive
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: "lts/*" # Use LTS version
+          node-version: "lts/*" # 使用 LTS 版本
+
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
@@ -27,12 +28,16 @@ jobs:
           key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+
       - name: Install Dependencies
         run: npm install
+
       - name: Install Hexo globally
         run: npm install -g hexo-cli
-      - name: Build
+
+      - name: Build the site
         run: npm run build
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -43,12 +48,13 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      # Check if page_url output is available or find the correct way to extract the URL
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy to Cloudflare Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: cloudflare/pages-action@v2
+        with:
+          api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}  # Cloudflare API token，记得在 GitHub secrets 中设置
+          project-name: lovezbismih-github-io       # Cloudflare Pages 项目名称
+          branch: main                         # 部署的分支
+          directory: ./public                  # 静态文件输出目录
