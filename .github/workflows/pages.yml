@@ -43,18 +43,20 @@ jobs:
         with:
           path: ./public
 
+
   deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
     runs-on: ubuntu-latest
+    name: Deploy
+    permissions:
+      contents: read
+      deployments: write
     steps:
-      - name: Deploy to Cloudflare Pages
-        id: deployment
-        uses: cloudflare/pages-action@v1
+      - uses: actions/checkout@v4
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
         with:
-          api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}  # Cloudflare API token，记得在 GitHub secrets 中设置
-          project-name: your-project-name       # Cloudflare Pages 项目名称
-          branch: main                         # 部署的分支
-          directory: ./public                  # 静态文件输出目录
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy YOUR_DIST_FOLDER --project-name=lovezbismih-github-io
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
