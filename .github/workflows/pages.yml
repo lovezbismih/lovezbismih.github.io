@@ -52,9 +52,9 @@ jobs:
     steps:
       - name: Deploy to Cloudflare Pages
         id: deployment
-        uses: cloudflare/pages-action@v2
+        uses: cloudflare/pages-action@v1
         with:
           api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}  # Cloudflare API token，记得在 GitHub secrets 中设置
-          project-name: lovezbismih-github-io       # Cloudflare Pages 项目名称
+          project-name: your-project-name       # Cloudflare Pages 项目名称
           branch: main                         # 部署的分支
           directory: ./public                  # 静态文件输出目录
