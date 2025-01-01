@@ -1,4 +1,0 @@
----
-title: ddns
----
-init
