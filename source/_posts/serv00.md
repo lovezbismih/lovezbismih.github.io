@@ -1,11 +1,16 @@
 ---
-title: 1. serv00
+title: serv00 
 ---
+### 介绍：[serv00](https://www.serv00.com/)是一个托管网站，可以申请免费虚拟主机
+
+
+
 ##  一、保号教程
+
 1. Fork仓库
 2. 配置Secrets
     1. ```ACCOUNTS_JSON```
-        
+       
         ```
         [
         {"username": "serv00的账号", "password": "serv00的密码", "panel": "panel6.serv00.com"},
@@ -15,7 +20,7 @@ title: 1. serv00
         ```
     2. ```TELEGRAM_BOT_TOKEN```：机器Token```@botfather```
 
-    3. ```TELEGRAM_CHAT_ID```: chatID
+    3. ```TELEGRAM_CHAT_ID```: 个人chatID```@userinfocbot```
 3. 开启action和workflow
 4. 运行workflow
 
